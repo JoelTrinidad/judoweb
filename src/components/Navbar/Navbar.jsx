@@ -9,11 +9,12 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false)
-  console.log(showMenu);
+  
   return (
     <S.NavbarContainer>
       <S.ContainerLogo onClick={() => navigate("/")}>
         <S.ImageLogo src={imageLogo} alt="Logo" />
+        <h1>Judo Digital</h1>
       </S.ContainerLogo>
       <S.ContainerBarsMenu onClick={() => setShowMenu(!showMenu)}>
         <FontAwesomeIcon icon={faBars} />

@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { fonts } from "../../styles/global";
 
 export const NavbarContainer = styled.div`
+  font-family: ${fonts.secondary};
+  color: #fff;
   background: rgba(20, 15, 7, 0.7);
   padding: 0 20px;
   width: 100%;
@@ -9,11 +12,20 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
+
+  h1 {
+    font-weight: 600;
+  }
 `;
 
 export const ContainerLogo = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px){
+    justify-content: center;
+    flex-grow: 1;
+  }
 `;
 
 export const ImageLogo = styled.img`
@@ -26,9 +38,9 @@ export const ContainerItems = styled.div`
   align-items: center;
 
   p {
-    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
     padding: 0 13px;
-    font-weight: 500;
     cursor: pointer;
   }
 
