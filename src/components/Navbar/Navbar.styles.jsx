@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { fonts } from "../../styles/global";
 
 export const NavbarContainer = styled.div`
-  font-family: ${fonts.secondary};
+  font-family: ${fonts.primary};
   color: #fff;
   background: rgba(20, 15, 7, 0.7);
   padding: 0 20px;

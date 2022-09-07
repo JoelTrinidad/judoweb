@@ -3,7 +3,7 @@ import bgHome from "../../assets/img/bg-home.jpg";
 import { fonts } from "../../styles/global";
 
 export const HomeContainer = styled.div`
-  font-family: ${fonts.secondary};
+  font-family: ${fonts.primary};
   color: #fff;
   background: rgba(0, 0, 0, 0.3) url(${bgHome});
   background-size: cover;
@@ -19,7 +19,7 @@ export const HomeContainer = styled.div`
 
 export const Title = styled.h1`
   font-size: 120px;
-  font-family: ${fonts.primary};
+  font-family: ${fonts.secondary};
   margin: 20px 0;
 
   @media (max-width: 768px) {

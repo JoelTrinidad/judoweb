@@ -1,4 +1,4 @@
 export const fonts = {
-  primary: `'Playfair Display', serif`,
-  secondary: `'Lato', sans-serif`,
+  secondary: `'Playfair Display', serif`,
+  primary: `'Lato', sans-serif`,
 };
