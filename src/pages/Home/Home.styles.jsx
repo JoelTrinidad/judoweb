@@ -33,7 +33,6 @@ export const WellcomeMessage = styled.p`
   text-align: center;
   
   @media (max-width: 768px) {
-    //margin: 10px 0;
     font-size: 20px;
   }
 `;
