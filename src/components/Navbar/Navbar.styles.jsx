@@ -4,14 +4,16 @@ import { fonts } from "../../styles/global";
 export const NavbarContainer = styled.div`
   font-family: ${fonts.primary};
   color: #fff;
-  background: rgba(20, 15, 7, 0.7);
+  background: rgba(20, 15, 7, 0.25);
   padding: 0 20px;
   width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  z-index: 5;
 
   h1 {
     font-weight: 600;
