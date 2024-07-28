@@ -1,14 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-
-import App from './App';
+import { WrappedApp } from './App';
 
 describe('App', () => {
   describe('Title', () => {
     afterEach(cleanup);
 
     it('should render with the title visible', () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const title = screen.getByText('JudoDigital');
 
@@ -16,7 +15,7 @@ describe('App', () => {
     });
 
     it("title should in an 'A' tag", () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const title = screen.getByText('JudoDigital');
 
@@ -28,7 +27,7 @@ describe('App', () => {
     afterEach(cleanup);
 
     it('should render with the history section link visible', () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Historia');
 
@@ -36,7 +35,7 @@ describe('App', () => {
     });
 
     it("history section link should in an 'A' tag", () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Historia');
 
@@ -48,7 +47,7 @@ describe('App', () => {
     afterEach(cleanup);
 
     it('should render with the techniques sectin link visible', () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Técnicas');
 
@@ -56,7 +55,7 @@ describe('App', () => {
     });
 
     it("techniques section link should in an 'A' tag", () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Glosario');
 
@@ -68,7 +67,7 @@ describe('App', () => {
     afterEach(cleanup);
 
     it('should render with the glosary section link visible', () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Historia');
 
@@ -76,7 +75,7 @@ describe('App', () => {
     });
 
     it("glosary section link should in an 'A' tag", () => {
-      render(<App />);
+      render(<WrappedApp />);
 
       const link = screen.getByText('Historia');
 
