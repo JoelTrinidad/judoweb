@@ -1,6 +1,7 @@
 import jigoroStatute from '../assets/img/jigoro-kano-statue.png';
 import tecnicasBackgroud from '../assets/img/tecnicas-background.jpg';
 import glosarioBackgroud from '../assets/img/glosario-background.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
         <div className="h-4/6">
           <ul className="grid grid-cols-3 w-screen h-full text-4xl font-bold">
             <li className="h-full overflow-x-hidden">
-              <a
+              <Link
                 style={{
                   backgroundImage: `url(${jigoroStatute})`,
                   backgroundPosition: 'center center',
@@ -30,12 +31,12 @@ export default function Home() {
                   backgroundSize: 'cover',
                 }}
                 className="grid place-content-center h-full min-h-60 transition-all ease-in-out duration-300 grayscale hover:grayscale-0 hover:scale-105"
-                href="#">
+                to="historia">
                 Historia
-              </a>
+              </Link>
             </li>
             <li className="h-full overflow-x-hidden">
-              <a
+              <Link
                 style={{
                   backgroundImage: `url(${tecnicasBackgroud})`,
                   backgroundPosition: 'center center',
@@ -43,9 +44,9 @@ export default function Home() {
                   backgroundSize: 'cover',
                 }}
                 className="grid place-content-center h-full min-h-60 transition-all ease-in-out duration-300 grayscale hover:grayscale-0 hover:scale-105"
-                href="#">
+                to="techniques">
                 Técnicas
-              </a>
+              </Link>
             </li>
             <li className="h-full overflow-x-hidden">
               <a
