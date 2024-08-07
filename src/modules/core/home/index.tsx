@@ -44,7 +44,7 @@ export default function Home() {
               </Link>
             </li>
             <li className="h-full overflow-x-hidden">
-              <a
+              <Link
                 style={{
                   backgroundImage: `url(${glosarioBackgroud})`,
                   backgroundPosition: 'center center',
@@ -52,9 +52,9 @@ export default function Home() {
                   backgroundSize: 'cover',
                 }}
                 className="grid place-content-center h-full min-h-60 transition-all ease-in-out duration-300 grayscale hover:grayscale-0 hover:scale-105"
-                href="#">
+                to="glossary">
                 Glosario
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
