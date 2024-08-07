@@ -1,16 +1,11 @@
-import jigoroStatute from '../assets/img/jigoro-kano-statue.png';
-import tecnicasBackgroud from '../assets/img/tecnicas-background.jpg';
-import glosarioBackgroud from '../assets/img/glosario-background.jpg';
+import jigoroStatute from '../../../assets/img/jigoro-kano-statue.png';
+import tecnicasBackgroud from '../../../assets/img/tecnicas-background.jpg';
+import glosarioBackgroud from '../../../assets/img/glosario-background.jpg';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
     <div className="bg-blue-judo text-white">
-      <div>
-        <a href="/">
-          <h1 className="text-3xl font-bold underline">JudoDigital</h1>
-        </a>
-      </div>
       <div className="h-screen">
         <div className="h-2/6 text-center py-6 font-medium">
           <p className="text-3xl pt-6 pb-8">Este proyecto es con fines de amor al judo</p>
