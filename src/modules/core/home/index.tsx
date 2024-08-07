@@ -16,8 +16,8 @@ export default function Home() {
           </p>
         </div>
         <div className="h-4/6">
-          <ul className="grid grid-cols-3 w-screen h-full text-4xl font-bold">
-            <li className="h-full overflow-x-hidden">
+          <ul className="grid grid-cols-3 w-full h-full text-4xl font-bold">
+            <li className="h-full overflow-hidden">
               <Link
                 style={{
                   backgroundImage: `url(${jigoroStatute})`,
@@ -30,7 +30,7 @@ export default function Home() {
                 Historia
               </Link>
             </li>
-            <li className="h-full overflow-x-hidden">
+            <li className="h-full overflow-hidden">
               <Link
                 style={{
                   backgroundImage: `url(${tecnicasBackgroud})`,
@@ -43,7 +43,7 @@ export default function Home() {
                 Técnicas
               </Link>
             </li>
-            <li className="h-full overflow-x-hidden">
+            <li className="h-full overflow-hidden">
               <Link
                 style={{
                   backgroundImage: `url(${glosarioBackgroud})`,
