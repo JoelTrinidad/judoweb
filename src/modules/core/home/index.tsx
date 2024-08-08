@@ -26,7 +26,7 @@ export default function Home() {
                   backgroundSize: 'cover',
                 }}
                 className="grid place-content-center h-full min-h-60 transition-all ease-in-out duration-300 grayscale hover:grayscale-0 hover:scale-105"
-                to="historia">
+                to="history">
                 Historia
               </Link>
             </li>

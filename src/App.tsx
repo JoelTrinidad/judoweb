@@ -3,6 +3,7 @@ import Home from './modules/core/home';
 import Techniques from './modules/techniques';
 import Layout from './modules/core/components/layout';
 import Glossary from './modules/glossary';
+import History from './modules/history';
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
         <Route path="/" element={<Home />} />
         <Route path="/techniques" element={<Techniques />} />
         <Route path="/glossary" element={<Glossary />} />
+        <Route path="/history" element={<History />} />
       </Route>
     </Routes>
   );
