@@ -29,17 +29,17 @@ describe('App', () => {
     it('should render with the history section link visible', () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Historia');
+      const link = screen.getAllByText('Historia');
 
-      expect(link).toBeInTheDocument();
+      expect(link[0]).toBeInTheDocument();
     });
 
     it("history section link should in an 'A' tag", () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Historia');
+      const link = screen.getAllByText('Historia');
 
-      expect(link.tagName).toBe('A');
+      expect(link[0].tagName).toBe('A');
     });
   });
 
@@ -49,37 +49,37 @@ describe('App', () => {
     it('should render with the techniques sectin link visible', () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Técnicas');
+      const link = screen.getAllByText('Técnicas');
 
-      expect(link).toBeInTheDocument();
+      expect(link[0]).toBeInTheDocument();
     });
 
     it("techniques section link should in an 'A' tag", () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Glosario');
+      const link = screen.getAllByText('Glosario');
 
-      expect(link.tagName).toBe('A');
+      expect(link[0].tagName).toBe('A');
     });
   });
 
   describe('Glosary section link', () => {
     afterEach(cleanup);
 
-    it('should render with the glosary section link visible', () => {
+    it('should render with the glossary section link visible', () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Historia');
+      const link = screen.getAllByText('Glosario');
 
-      expect(link).toBeInTheDocument();
+      expect(link[0]).toBeInTheDocument();
     });
 
     it("glosary section link should in an 'A' tag", () => {
       render(<WrappedApp />);
 
-      const link = screen.getByText('Historia');
+      const link = screen.getAllByText('Glosario');
 
-      expect(link.tagName).toBe('A');
+      expect(link[0].tagName).toBe('A');
     });
   });
 });
