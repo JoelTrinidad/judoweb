@@ -53,7 +53,7 @@ export default function Techniques() {
       <div className="bg-black/30 h-full pt-16 ">
         <div className="flex flex-col items-center h-full pb-5">
           <h1 className="text-4xl font-semibold py-5">Técnicas</h1>
-          <table className="bg-gray-900/60 table-fixed w-11/12 flex-auto border-collapse border border-slate-500 backdrop-blur-md">
+          <table className="bg-gray-900/60 table-fixed w-11/12 flex-auto border-collapse border border-slate-500 backdrop-opacity-10">
             <thead>
               <tr>
                 <th className="bg-gray-800 w-2/6 py-2 border-2 border-slate-600">Técnicas</th>

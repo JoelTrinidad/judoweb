@@ -12,10 +12,12 @@ export default function History() {
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
       }}>
-      <div className="bg-black/20 h-full pt-16">
-        <section className="container h-[90%] mx-auto rounded-lg overflow-hidden px-6 py-8 backdrop-blur-lg bg-black/30">
-          <h2 className="text-3xl font-bold pb-8">Historia</h2>
-          <div className="h-[calc(90%)] overflow-auto">
+      <div className="bg-black/30 h-full pt-16 grid items-center">
+        <section className="bg-gray-800/75 container h-[95%] mx-auto rounded-lg overflow-hidden pb-8 backdrop-opacity-10">
+          <div className="bg-gray-800 rounded-t-lg px-6 py-6">
+            <h2 className="text-3xl font-bold">Historia</h2>
+          </div>
+          <div className="text-lg h-[calc(90%)] px-6 pt-4 overflow-auto">
             <p className="mt-1 mb-3">
               De forma simple podemos definir al judo como un arte marcial, asi como también un
               deporte olímpico, de origen Japonés el cual se centra principalmente en proyecciones,
@@ -28,7 +30,7 @@ export default function History() {
               definición que más me gusta dicha por él es que el judo es la forma de usar la energía
               del cuerpo y el espíritu de la manera más eficaz.
             </p>
-            <figure className="flex flex-col items-center">
+            <figure className="flex flex-col items-center my-6">
               <img className="w-80 max-w-full" src={jigoroKano} alt="Jigoro Kano" />
               <figcaption>Fig1. - Jigoro Kano.</figcaption>
             </figure>
@@ -52,7 +54,7 @@ export default function History() {
               correctamente e impuso que ambos luchadores se deben sostener el uno al otro. Dando
               como resultado el conjunto de técnicas a las que se reconoce como judo.
             </p>
-            <figure className="text-center flex flex-col items-center">
+            <figure className="text-center flex flex-col items-center my-6">
               <img className="max-w-full" src={jigoroKanoUkiGoshi} alt="Jigoro Kano" />
               <figcaption>Fig2. - Jigoro Kano demostrando la técnica Uki Goshi.</figcaption>
             </figure>
