@@ -6,9 +6,9 @@ import { routes } from '../constants';
 
 export default function Home() {
   return (
-    <div className="bg-blue-judo text-white">
+    <div className="bg-gray-800 text-white">
       <div className="h-screen">
-        <div className="h-2/6 text-center py-6 font-medium">
+        <div className="h-2/6 text-center py-6 font-medium grid place-content-center">
           <p className="text-3xl pt-6 pb-8">Este proyecto es con fines de amor al judo</p>
           <p>
             La información encontrada aqui es una traducción e interpretacion realizada de algunas

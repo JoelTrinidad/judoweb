@@ -12,7 +12,7 @@ export default function History() {
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
       }}>
-      <div className="bg-black/30 h-full pt-16 grid items-center">
+      <div className="bg-black/40 h-full pt-16 grid items-center">
         <section className="bg-gray-800/75 container h-[95%] mx-auto rounded-lg overflow-hidden pb-8 backdrop-opacity-10">
           <div className="bg-gray-800 rounded-t-lg px-6 py-6">
             <h2 className="text-3xl font-bold">Historia</h2>

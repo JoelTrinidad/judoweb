@@ -3,7 +3,7 @@ import { useId } from 'react';
 
 import { routes } from '../../constants';
 
-const selectedRouteStyles = 'text-white  border-b-2';
+const selectedRouteStyles = 'text-white  border-b-2 border-yellow-400';
 export default function Header() {
   const { pathname } = useLocation();
   const id = useId();
@@ -11,7 +11,9 @@ export default function Header() {
   return (
     <header className="text-white w-full px-5 py-4 flex justify-between items-center fixed z-10">
       <Link to={routes.home.path}>
-        <h1 className="text-3xl font-bold">JudoDigital</h1>
+        <h1 className="text-transparent text-3xl font-bold bg-gradient-to-br from-blue-300 to-blue-600 bg-clip-text">
+          JudoDigital
+        </h1>
       </Link>
       <nav>
         <ul className="text-2xl text-gray-300 flex gap-5">

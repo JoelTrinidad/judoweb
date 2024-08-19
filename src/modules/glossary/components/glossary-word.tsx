@@ -9,7 +9,7 @@ interface Props {
 export default function GlossaryWord({ word }: Props) {
   return (
     <li className="glossary_word">
-      <details className="bg-gray-800 border  border-gray-600 rounded-lg shadow [&_svg]:open:-rotate-180 [&_ChevronDownIcon]:open:-rotate-180 [&_summary]:open:shadow [&_summary]:open:shadow-gray-950">
+      <details className="bg-gray-800 border  border-gray-600 rounded-lg shadow [&_svg]:open:-rotate-180 [&_ChevronDownIcon]:open:-rotate-180 [&_summary]:open:shadow-md [&_summary]:open:shadow-gray-950">
         <summary className="p-4 flex  justify-between items-center border-gray-600 gap-4 cursor-pointer">
           <p>{word.word}</p>
           <div>
