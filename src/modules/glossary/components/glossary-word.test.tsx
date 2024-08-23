@@ -6,7 +6,7 @@ describe('glossary-word', () => {
   afterEach(cleanup);
 
   it('should render the word content', () => {
-    const word: Word = { word: 'Judo', meaning: 'Camino de la suavidad' };
+    const word: Word = { id: '1', word: 'Judo', meaning: 'Camino de la suavidad' };
     render(<GlossaryWord word={word} />);
 
     const wordInDocument = screen.getByText('Judo');
