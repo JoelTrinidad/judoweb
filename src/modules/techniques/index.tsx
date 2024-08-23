@@ -1,22 +1,10 @@
-import { useEffect, useState } from 'react';
 import techniqueBg from '../../assets/img/dojo_bg.jpg';
 import TechniqueDescription from './components/technique-description';
 import TechniqueList from './components/technique-list';
-import { Technique } from './interfaces';
-import { getTechniques } from './techniques.service';
+import useTechniques from './hooks/useTechniques';
+
 export default function Techniques() {
-  const [selectedTechnique, setSelectedTechnique] = useState<Technique | null>(null);
-  const [techniques, setTechniques] = useState<Technique[]>([]);
-
-  useEffect(() => {
-    getTechniques().then((techniques) => {
-      setTechniques(techniques);
-    });
-  }, []);
-
-  const handleTechniqueOnclick = (technique: Technique) => {
-    setSelectedTechnique(technique);
-  };
+  const { techniques, selectedTechnique, handleTechniqueOnclick } = useTechniques();
 
   return (
     <div
