@@ -1,17 +1,9 @@
 import GlossaryList from './components/glossary-list';
-import { Word } from './interfaces';
 import glossaryBg from '../../assets/img/glossary-background.jpg';
-import { useEffect, useState } from 'react';
-import { getWords } from './glossary-words.service';
+import useWords from './hooks/useWords';
 
 export default function Glossary() {
-  const [words, setWords] = useState<Word[]>([]);
-
-  useEffect(() => {
-    getWords().then((words) => {
-      setWords(words);
-    });
-  }, []);
+  const { words } = useWords();
 
   return (
     <div
