@@ -55,7 +55,7 @@ export const techniques = [
   },
   {
     id: '3',
-    name: 'Seoi-otoshi Version 1',
+    name: 'Seoi-otoshi V1',
     description: [
       {
         tag: 'p',
@@ -74,6 +74,22 @@ export const techniques = [
       {
         tag: 'p',
         content: `Por ultimo jala con ambas manos de manera diagonal hacia abajo para lanzar a Uke.`,
+      },
+    ],
+  },
+  {
+    id: '4',
+    name: 'Seoi-otoshi V2 (ambas rodillas en el piso)',
+    description: [
+      {
+        tag: 'p',
+        content: `Tori y Uke se sostienen mutuamente en una posición natural derecha. Tori jala a
+                  Uke hacia adelante mientras da un ligero paso hacia atrás para desequilibrar a
+                  Uke. tori coloca su pie derecho enfrente del pie derecho de Uke asumiendo rápidamente la posición de Seoi-nage.`,
+      },
+      {
+        tag: 'p',
+        content: `Al mismo tiempo, Tori deja caer ambas rodillas en el tatami y jala recto con ambas manos sobre su hombro derecho.`,
       },
     ],
   },
