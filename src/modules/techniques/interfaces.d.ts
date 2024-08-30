@@ -6,5 +6,8 @@ export interface TechniqueDescriptionElement {
 export interface Technique {
   id: string;
   name: string;
+}
+
+interface TechniqueWithDescription extends Technique {
   description: TechniqueDescriptionElement[];
 }

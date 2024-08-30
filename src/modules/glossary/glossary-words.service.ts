@@ -1,10 +1,12 @@
+import { BACKEND_URL } from '../core/constants';
 import { Word } from './interfaces';
-import { words } from './mocks/glossary-words';
 
 export async function getWords() {
-  return new Promise<Word[]>((resolve) => {
-    setTimeout(() => {
-      resolve(words);
-    }, 2000);
-  });
+  return fetch(`${BACKEND_URL}/api/glossary`)
+    .then((res) => {
+      return res.json();
+    })
+    .then(({ data }: { data: Word[] }) => {
+      return data;
+    });
 }

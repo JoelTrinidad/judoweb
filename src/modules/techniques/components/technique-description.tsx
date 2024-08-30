@@ -1,8 +1,8 @@
 import { useId } from 'react';
-import { Technique } from '../interfaces';
+import { TechniqueWithDescription } from '../interfaces';
 
 interface Props {
-  technique: Technique;
+  technique: TechniqueWithDescription;
 }
 export default function TechniqueDescription({ technique }: Props) {
   const id = useId();
