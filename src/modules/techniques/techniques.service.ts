@@ -1,8 +1,30 @@
 import { BACKEND_URL } from '../core/constants';
-import { Technique, TechniqueWithDescription } from './interfaces';
+import { Filters, Grade, Technique, TechniqueWithDescription } from './interfaces';
+import { grades } from './mocks/grades';
 
-export async function getTechniqueList(): Promise<Technique[]> {
-  return fetch(`${BACKEND_URL}/api/techniques`)
+export async function getTechniqueList({ filters }: { filters: Filters }): Promise<Technique[]> {
+  return fetch(`${BACKEND_URL}/api/techniques`, {
+    method: 'POST',
+    body: JSON.stringify({ filters }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res: Response) => {
+      if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+
+      return res.json();
+    })
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function getTechnique(id: string): Promise<TechniqueWithDescription> {
+  return fetch(`${BACKEND_URL}/api/techniques/${id}`)
     .then((res) => {
       return res.json();
     })
@@ -11,10 +33,8 @@ export async function getTechniqueList(): Promise<Technique[]> {
     });
 }
 
-export async function getTechnique(id: string): Promise<TechniqueWithDescription> {
-  console.log(BACKEND_URL);
-
-  return fetch(`${BACKEND_URL}/api/techniques/${id}`)
+export async function getGrades() {
+  return fetch(`${BACKEND_URL}/api/techniques/grades`)
     .then((res) => {
       return res.json();
     })

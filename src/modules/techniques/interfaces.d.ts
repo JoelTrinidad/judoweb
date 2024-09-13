@@ -11,3 +11,14 @@ export interface Technique {
 interface TechniqueWithDescription extends Technique {
   description: TechniqueDescriptionElement[];
 }
+
+interface Grade {
+  number: string;
+  name: string;
+  type: string;
+  beltColor: string;
+}
+
+interface Filters {
+  grade: string;
+}
