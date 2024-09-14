@@ -8,9 +8,9 @@ describe('glossary-list', () => {
 
   it('should render all the items', () => {
     const words: Word[] = [
-      { word: 'Judo', meaning: 'Camino de la suavidad' },
-      { word: 'Seiryoku-Zenyo', meaning: 'Maxina eficiencia del uso de la energia' },
-      { word: 'Jita-Kyoei', meaning: 'Todo es unidad' },
+      { id: '1', word: 'Judo', meaning: 'Camino de la suavidad' },
+      { id: '2', word: 'Seiryoku-Zenyo', meaning: 'Maxima eficiencia del uso de la energía' },
+      { id: '3', word: 'Jita-Kyoei', meaning: 'Todo es unidad' },
     ];
     render(<GlossaryList wordList={words} />);
     const wordList = document.querySelectorAll('.glossary_word');

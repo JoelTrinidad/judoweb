@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
 import techniqueBg from '../../assets/img/dojo_bg.jpg';
 import TechniqueDescription from './components/technique-description';
 import TechniqueList from './components/technique-list';
-import { Technique } from './interfaces';
-import { getTechniques } from './techniques.service';
+import useTechniques from './hooks/useTechniques';
+import FilterBar from './components/filter-bar';
+
 export default function Techniques() {
-  const [selectedTechnique, setSelectedTechnique] = useState<Technique | null>(null);
-  const [techniques, setTechniques] = useState<Technique[]>([]);
-
-  useEffect(() => {
-    getTechniques().then((techniques) => {
-      setTechniques(techniques);
-    });
-  }, []);
-
-  const handleTechniqueOnclick = (technique: Technique) => {
-    setSelectedTechnique(technique);
-  };
+  const { techniques, selectedTechnique, handleTechniqueOnclick, changeFilters } = useTechniques();
 
   return (
     <div
@@ -29,7 +18,7 @@ export default function Techniques() {
       }}>
       <div className="bg-black/30 h-full pt-16 ">
         <div className="flex flex-col items-center h-full pb-5">
-          <h1 className="text-4xl font-semibold py-5">Técnicas</h1>
+          <FilterBar changeFilters={changeFilters} />
           <table className="bg-gray-900/60 table-fixed w-11/12 flex-auto border-collapse border border-slate-500 backdrop-opacity-10">
             <thead>
               <tr>

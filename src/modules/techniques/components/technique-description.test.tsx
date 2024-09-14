@@ -7,6 +7,7 @@ describe('Technique', () => {
 
   it('should render the elements', () => {
     const technique = {
+      id: '1',
       name: 'Seoi-nage',
       description: [
         {
@@ -22,14 +23,14 @@ describe('Technique', () => {
                     coloca su pie izquierdo delante del pie izquierdo de Uke. Tori y Uke ahora estan
                     en la misma dirección. Tori dobla su codo derecho y lo coloca en la axila
                     derecha de Uke, después jala hacia abajo el brazo derecho de Uke y lo mantiene
-                    contra el cuerpo de Tori, Mientras mantiene un contacto estrecho con el pecho de
-                    Uke`,
+                    contra el cuerpo de Tori, mientras mantiene un contacto estrecho con el pecho de
+                    Uke.`,
         },
         {
           tag: 'p',
           content: `Tori levanta a Uke con ambas manos e inclina su cuerpo hacia adelante, mientras
             endereza ambas rodillas lanza a Uke sobre su hombro derecho. Con el brazo
-            derecho de Tori actuando como eje, el cuerpo de Uke girará y caerá`,
+            derecho de Tori actuando como eje, el cuerpo de Uke girará y caerá.`,
         },
       ],
     };

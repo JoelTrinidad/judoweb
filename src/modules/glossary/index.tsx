@@ -1,13 +1,9 @@
 import GlossaryList from './components/glossary-list';
-import { Word } from './interfaces';
 import glossaryBg from '../../assets/img/glossary-background.jpg';
+import useWords from './hooks/useWords';
 
 export default function Glossary() {
-  const words: Word[] = [
-    { word: 'Judo', meaning: 'Camino de la suavidad' },
-    { word: 'Seiryoku-Zenyo', meaning: 'Maxina eficiencia del uso de la energia' },
-    { word: 'Jita-Kyoei', meaning: 'Todo es unidad' },
-  ];
+  const { words } = useWords();
 
   return (
     <div
