@@ -1,6 +1,5 @@
 import { BACKEND_URL } from '../core/constants';
 import { Filters, Grade, Technique, TechniqueWithDescription } from './interfaces';
-import { grades } from './mocks/grades';
 
 export async function getTechniqueList({ filters }: { filters: Filters }): Promise<Technique[]> {
   return fetch(`${BACKEND_URL}/api/techniques`, {
@@ -33,7 +32,7 @@ export async function getTechnique(id: string): Promise<TechniqueWithDescription
     });
 }
 
-export async function getGrades() {
+export async function getGrades(): Promise<Grade[]> {
   return fetch(`${BACKEND_URL}/api/techniques/grades`)
     .then((res) => {
       return res.json();
