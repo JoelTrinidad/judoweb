@@ -21,4 +21,11 @@ interface Grade {
 
 interface Filters {
   grade: string;
+  category: string;
+}
+
+interface Category {
+  name: string;
+  translation: string;
+  key: string;
 }

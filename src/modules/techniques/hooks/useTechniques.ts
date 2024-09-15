@@ -5,7 +5,7 @@ import { getTechnique, getTechniqueList } from '../techniques.service';
 export default function useTechniques() {
   const [selectedTechnique, setSelectedTechnique] = useState<TechniqueWithDescription | null>(null);
   const [techniques, setTechniques] = useState<Technique[]>([]);
-  const [filters, setFilters] = useState<Filters>({ grade: '' });
+  const [filters, setFilters] = useState<Filters>({ grade: '', category: '' });
 
   useEffect(() => {
     getTechniqueList({ filters }).then((techniques) => {
