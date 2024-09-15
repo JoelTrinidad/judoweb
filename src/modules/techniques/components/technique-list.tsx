@@ -7,7 +7,7 @@ interface Props {
 }
 export default function TechniqueList({ techniques, handleOnclick, selected }: Props) {
   return (
-    <ul>
+    <ul className="overflow-auto max-h-[inherit]">
       {techniques.length > 0 &&
         techniques?.map((technique) => {
           return (

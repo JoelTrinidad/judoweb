@@ -19,16 +19,16 @@ export default function Techniques() {
       <div className="bg-black/30 h-full pt-16 ">
         <div className="flex flex-col items-center h-full pb-5">
           <FilterBar changeFilters={changeFilters} />
-          <table className="bg-gray-900/60 table-fixed w-11/12 flex-auto border-collapse border border-slate-500 backdrop-opacity-10">
+          <table className="bg-gray-900/60 table-fixed w-11/12 max-h-[72dvh] md:max-h-[74dvh] flex-auto border-collapse border border-slate-500 backdrop-opacity-10">
             <thead>
               <tr>
                 <th className="bg-gray-800 w-2/6 py-2 border-2 border-slate-600">Técnicas</th>
                 <th className="bg-gray-800 w-4/6 py-2 border-2 border-slate-600">Información</th>
               </tr>
             </thead>
-            <tbody>
-              <tr className="w-full">
-                <td className=" w-2/6 align-top border-2 border-slate-600">
+            <tbody className="max-h-[inherit]">
+              <tr className="w-full max-h-[inherit]">
+                <td className=" w-2/6 max-h-[inherit] align-top border-2 border-slate-600">
                   <TechniqueList
                     selected={selectedTechnique}
                     techniques={techniques}
