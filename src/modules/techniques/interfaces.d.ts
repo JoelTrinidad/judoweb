@@ -22,10 +22,18 @@ interface Grade {
 interface Filters {
   grade: string;
   category: string;
+  subcategory: string;
 }
 
 interface Category {
   name: string;
   translation: string;
   key: string;
+}
+
+interface Subcategory {
+  name: string;
+  translation: string;
+  key: string;
+  category: string;
 }
