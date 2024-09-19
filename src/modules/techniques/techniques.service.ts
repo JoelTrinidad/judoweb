@@ -29,7 +29,11 @@ export async function getTechniqueList({ filters }: { filters: Filters }): Promi
     });
 }
 
-export async function getTechnique(id: string): Promise<TechniqueWithDescription> {
+export async function getTechnique(
+  id: string | null
+): Promise<TechniqueWithDescription | undefined> {
+  if (!id) return;
+
   return fetch(`${BACKEND_URL}/api/techniques/${id}`)
     .then((res) => {
       return res.json();

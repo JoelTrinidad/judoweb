@@ -10,14 +10,7 @@ interface Props {
 }
 
 export default function FilterBar({ filters, changeFilters }: Props) {
-  const {
-    grades,
-    categories,
-    subcategories,
-    handleOnGradeChange,
-    handleOnCategoryChange,
-    handleOnSubcategoryChange,
-  } = useFilterBar({
+  const { isLoading, grades, categories, subcategories, handleOnChange } = useFilterBar({
     filters,
     changeFilters,
   });
@@ -52,19 +45,22 @@ export default function FilterBar({ filters, changeFilters }: Props) {
   return (
     <div className="bg-gray-800 w-11/12 mt-5 mb-3 px-3 py-4 flex border justify-around border-slate-500">
       <SelectInput
+        isLoading={isLoading.grades}
         label="Grado"
         options={gradesOptions.current}
-        handleOnOptionChange={handleOnGradeChange}
+        handleOnOptionChange={(value) => handleOnChange({ filterName: 'grade', value })}
       />
       <SelectInput
+        isLoading={isLoading.categories}
         label="Categoría"
         options={categoriesOptions.current}
-        handleOnOptionChange={handleOnCategoryChange}
+        handleOnOptionChange={(value) => handleOnChange({ filterName: 'category', value })}
       />
       <SelectInput
+        isLoading={isLoading.categories && isLoading.subcategories}
         label="Subcategoría"
         options={subcategoriesOptions.current}
-        handleOnOptionChange={handleOnSubcategoryChange}
+        handleOnOptionChange={(value) => handleOnChange({ filterName: 'subcategory', value })}
       />
     </div>
   );

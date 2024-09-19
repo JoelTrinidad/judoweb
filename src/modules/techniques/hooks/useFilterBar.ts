@@ -1,50 +1,40 @@
-import { useEffect, useState } from 'react';
 import { getCategories, getGrades, getSubcategories } from '../techniques.service';
 import { Category, Filters, Grade, Subcategory } from '../interfaces';
+import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   filters: Filters;
   changeFilters: (newFilters: Partial<Filters>) => void;
 }
 export default function useFilterBar({ filters, changeFilters }: Props) {
-  const [grades, setGrades] = useState<Grade[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
+  const { isLoading: gradesLoading, data: grades = [] } = useQuery<Grade[]>({
+    queryKey: ['grades'],
+    queryFn: getGrades,
+  });
 
-  useEffect(() => {
-    getGrades().then((data) => {
-      setGrades(data);
-    });
+  const { isLoading: categoriesLoading, data: categories = [] } = useQuery<Category[]>({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+  });
 
-    getCategories().then((data) => {
-      setCategories(data);
-    });
-  }, []);
+  const { isLoading: subcategoriesLoading, data: subcategories = [] } = useQuery<Subcategory[]>({
+    queryKey: ['subcategories', filters],
+    queryFn: async () => getSubcategories({ filters }),
+  });
 
-  useEffect(() => {
-    getSubcategories({ filters }).then((data) => {
-      setSubcategories(data);
-    });
-  }, [filters]);
-
-  const handleOnGradeChange = (value: string) => {
-    changeFilters({ grade: value });
-  };
-
-  const handleOnCategoryChange = (value: string) => {
-    changeFilters({ category: value });
-  };
-
-  const handleOnSubcategoryChange = (value: string) => {
-    changeFilters({ subcategory: value });
+  const handleOnChange = ({ filterName, value }: { filterName: string; value: string }) => {
+    changeFilters({ [filterName]: value });
   };
 
   return {
     grades,
     categories,
     subcategories,
-    handleOnGradeChange,
-    handleOnCategoryChange,
-    handleOnSubcategoryChange,
+    isLoading: {
+      grades: gradesLoading,
+      categories: categoriesLoading,
+      subcategories: subcategoriesLoading,
+    },
+    handleOnChange,
   };
 }

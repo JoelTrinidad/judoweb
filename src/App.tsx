@@ -5,6 +5,7 @@ import Layout from './modules/core/components/layout';
 import Glossary from './modules/glossary';
 import History from './modules/history';
 import { routes } from './modules/core/constants';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export function App() {
   return (
@@ -19,10 +20,14 @@ export function App() {
   );
 }
 
+const queryClient = new QueryClient();
+
 export function WrappedApp() {
   return (
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <QueryClientProvider client={queryClient}>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </QueryClientProvider>
   );
 }

@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 
 interface Props {
+  isLoading?: boolean;
   label?: string;
   options: {
     key: string;
@@ -10,13 +11,22 @@ interface Props {
   handleOnOptionChange: (value: string) => void;
 }
 
-export default function SelectInput({ label = '', options, handleOnOptionChange }: Props) {
+export default function SelectInput({
+  isLoading = false,
+  label = '',
+  options,
+  handleOnOptionChange,
+}: Props) {
   const [selectedItem, setSelectedItem] = useState<string>('no');
 
   const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedItem(e.target.value);
     handleOnOptionChange(e.target.value !== 'no' ? e.target.value.toLowerCase() : '');
   };
+
+  if (isLoading) {
+    return <div>Loading data...</div>;
+  }
 
   return (
     <label className="text-white text-sm font-medium flex items-center">
