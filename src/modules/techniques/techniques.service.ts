@@ -8,78 +8,58 @@ import {
   TechniqueWithDescription,
 } from './interfaces';
 
+async function handleResponse<T>(res: Response): Promise<T> {
+  if (!res.ok) {
+    throw new Error(`${res.status}: ${res.statusText}`);
+  }
+
+  const { data } = await res.json();
+
+  return data;
+}
+
 export async function getTechniqueList({ filters }: { filters: Filters }): Promise<Technique[]> {
-  return fetch(`${BACKEND_URL}/api/techniques`, {
+  const res = await fetch(`${BACKEND_URL}/api/techniques`, {
     method: 'POST',
     body: JSON.stringify({ filters }),
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then((res: Response) => {
-      if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+  });
 
-      return res.json();
-    })
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return handleResponse<Technique[]>(res);
 }
 
 export async function getTechnique(
   id: string | null
 ): Promise<TechniqueWithDescription | undefined> {
-  if (!id) return;
+  if (!id) return undefined;
 
-  return fetch(`${BACKEND_URL}/api/techniques/${id}`)
-    .then((res) => {
-      return res.json();
-    })
-    .then(({ data }) => {
-      return data;
-    });
+  const res = await fetch(`${BACKEND_URL}/api/techniques/${id}`);
+
+  return handleResponse<TechniqueWithDescription>(res);
 }
 
 export async function getGrades(): Promise<Grade[]> {
-  return fetch(`${BACKEND_URL}/api/techniques/grades`)
-    .then((res) => {
-      return res.json();
-    })
-    .then(({ data }) => {
-      return data;
-    });
+  const res = await fetch(`${BACKEND_URL}/api/techniques/grades`);
+
+  return handleResponse<Grade[]>(res);
 }
 
 export async function getCategories(): Promise<Category[]> {
-  return fetch(`${BACKEND_URL}/api/techniques/categories`)
-    .then((res) => {
-      return res.json();
-    })
-    .then(({ data }) => {
-      return data;
-    });
+  const res = await fetch(`${BACKEND_URL}/api/techniques/categories`);
+
+  return handleResponse<Category[]>(res);
 }
 
 export async function getSubcategories({ filters }: { filters: Filters }): Promise<Subcategory[]> {
-  return fetch(`${BACKEND_URL}/api/techniques/subcategories`, {
+  const res = await fetch(`${BACKEND_URL}/api/techniques/subcategories`, {
     method: 'POST',
     body: JSON.stringify({ filters }),
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then((res: Response) => {
-      if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+  });
 
-      return res.json();
-    })
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return handleResponse<Subcategory[]>(res);
 }

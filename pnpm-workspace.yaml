@@ -1,0 +1,6 @@
+allowBuilds:
+  '@swc/core': true
+minimumReleaseAgeExclude:
+  - happy-dom@20.11.6
+overrides:
+  strip-ansi: ^6.0.1

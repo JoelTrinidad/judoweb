@@ -5,8 +5,15 @@ import useTechniques from './hooks/useTechniques';
 import FilterBar from './components/filter-bar';
 
 export default function Techniques() {
-  const { techniques, selectedTechnique, filters, handleTechniqueOnclick, changeFilters } =
-    useTechniques();
+  const {
+    techniques,
+    selectedTechnique,
+    filters,
+    handleTechniqueOnclick,
+    changeFilters,
+    techniquesError,
+    selectedTechniqueError,
+  } = useTechniques();
 
   return (
     <div
@@ -20,6 +27,11 @@ export default function Techniques() {
       <div className="bg-black/30 h-full pt-16 ">
         <div className="flex flex-col items-center h-full pb-5">
           <FilterBar filters={filters} changeFilters={changeFilters} />
+          {(techniquesError || selectedTechniqueError) && (
+            <p className="text-red-400 py-2" role="alert">
+              No se pudieron cargar las técnicas. Intenta de nuevo más tarde.
+            </p>
+          )}
           <table className="bg-gray-900/60 table-fixed w-11/12 max-h-[72dvh] md:max-h-[74dvh] flex-auto border-collapse border border-slate-500 backdrop-opacity-10">
             <thead>
               <tr>

@@ -6,11 +6,19 @@ import { useQuery } from '@tanstack/react-query';
 export default function useTechniques() {
   const [selectedTechniqueId, setSelectedTechniqueId] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>({ grade: '', category: '', subcategory: '' });
-  const { isLoading: techniquesLoading, data: techniques = [] } = useQuery<Technique[]>({
+
+  const {
+    isLoading: techniquesLoading,
+    isError: techniquesError,
+    data: techniques = [],
+  } = useQuery<Technique[]>({
     queryKey: ['techniques', filters],
     queryFn: async () => await getTechniqueList({ filters }),
   });
-  const { data: selectedTechnique = [] } = useQuery<TechniqueWithDescription | undefined>({
+
+  const { isError: selectedTechniqueError, data: selectedTechnique = null } = useQuery<
+    TechniqueWithDescription | undefined
+  >({
     queryKey: ['selectedTechnique', selectedTechniqueId],
     queryFn: async () => await getTechnique(selectedTechniqueId),
     enabled: !!selectedTechniqueId,
@@ -27,7 +35,9 @@ export default function useTechniques() {
   return {
     techniques,
     techniquesLoading,
+    techniquesError,
     selectedTechnique,
+    selectedTechniqueError,
     filters,
     handleTechniqueOnclick,
     changeFilters,

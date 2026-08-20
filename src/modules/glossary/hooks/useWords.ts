@@ -4,14 +4,21 @@ import { getWords } from '../glossary-words.service';
 
 export default function useWords() {
   const [words, setWords] = useState<Word[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getWords().then((words) => {
-      setWords(words);
-    });
+    getWords()
+      .then((words) => {
+        setWords(words);
+        setError(null);
+      })
+      .catch((err: Error) => {
+        setError(err.message);
+      });
   }, []);
 
   return {
     words,
+    error,
   };
 }

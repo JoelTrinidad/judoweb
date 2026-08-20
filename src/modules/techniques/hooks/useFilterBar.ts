@@ -7,17 +7,29 @@ interface Props {
   changeFilters: (newFilters: Partial<Filters>) => void;
 }
 export default function useFilterBar({ filters, changeFilters }: Props) {
-  const { isLoading: gradesLoading, data: grades = [] } = useQuery<Grade[]>({
+  const {
+    isLoading: gradesLoading,
+    isError: gradesError,
+    data: grades = [],
+  } = useQuery<Grade[]>({
     queryKey: ['grades'],
     queryFn: getGrades,
   });
 
-  const { isLoading: categoriesLoading, data: categories = [] } = useQuery<Category[]>({
+  const {
+    isLoading: categoriesLoading,
+    isError: categoriesError,
+    data: categories = [],
+  } = useQuery<Category[]>({
     queryKey: ['categories'],
     queryFn: getCategories,
   });
 
-  const { isLoading: subcategoriesLoading, data: subcategories = [] } = useQuery<Subcategory[]>({
+  const {
+    isLoading: subcategoriesLoading,
+    isError: subcategoriesError,
+    data: subcategories = [],
+  } = useQuery<Subcategory[]>({
     queryKey: ['subcategories', filters],
     queryFn: async () => getSubcategories({ filters }),
   });
@@ -34,6 +46,11 @@ export default function useFilterBar({ filters, changeFilters }: Props) {
       grades: gradesLoading,
       categories: categoriesLoading,
       subcategories: subcategoriesLoading,
+    },
+    isError: {
+      grades: gradesError,
+      categories: categoriesError,
+      subcategories: subcategoriesError,
     },
     handleOnChange,
   };

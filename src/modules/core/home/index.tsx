@@ -1,7 +1,7 @@
 import jigoroStatute from '../../../assets/img/jigoro-kano-statue.png';
 import tecnicasBackgroud from '../../../assets/img/tecnicas-background.jpg';
 import glosarioBackgroud from '../../../assets/img/glosario-background.jpg';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { routes } from '../constants';
 
 export default function Home() {
