@@ -10,10 +10,8 @@ interface Props {
 }
 
 export default function FilterBar({ filters, changeFilters }: Props) {
-  const { isLoading, isError, grades, categories, subcategories, handleOnChange } = useFilterBar({
-    filters,
-    changeFilters,
-  });
+  const { grades, categoryLevels, isLoading, isError, handleGradeChange, handleCategoryChange } =
+    useFilterBar({ filters, changeFilters });
 
   const gradesOptions = useMemo(
     () =>
@@ -25,49 +23,30 @@ export default function FilterBar({ filters, changeFilters }: Props) {
     [grades]
   );
 
-  const categoriesOptions = useMemo(
-    () =>
-      categories.map((category) => ({
-        key: category.key,
-        value: category.key,
-        label: `${category.name} - ${category.translation}`,
-      })),
-    [categories]
-  );
-
-  const subcategoriesOptions = useMemo(
-    () =>
-      subcategories.map((subcategory) => ({
-        key: subcategory.key,
-        value: subcategory.key,
-        label: `${subcategory.name} - ${subcategory.translation}`,
-      })),
-    [subcategories]
-  );
-
-  const hasError = isError.grades || isError.categories || isError.subcategories;
+  const hasError = isError.grades || isError.categories;
 
   return (
     <div className="bg-gray-800 w-11/12 mt-5 mb-3 px-3 py-4 flex flex-col border justify-around border-slate-500">
-      <div className="flex justify-around">
+      <div className="flex justify-around flex-wrap gap-2">
         <SelectInput
           isLoading={isLoading.grades}
           label="Grado"
           options={gradesOptions}
-          handleOnOptionChange={(value) => handleOnChange({ filterName: 'grade', value })}
+          handleOnOptionChange={handleGradeChange}
         />
-        <SelectInput
-          isLoading={isLoading.categories}
-          label="Categoría"
-          options={categoriesOptions}
-          handleOnOptionChange={(value) => handleOnChange({ filterName: 'category', value })}
-        />
-        <SelectInput
-          isLoading={isLoading.categories && isLoading.subcategories}
-          label="Subcategoría"
-          options={subcategoriesOptions}
-          handleOnOptionChange={(value) => handleOnChange({ filterName: 'subcategory', value })}
-        />
+        {categoryLevels.map((level, index) => (
+          <SelectInput
+            key={index}
+            isLoading={level.isLoading}
+            label={level.label}
+            options={level.options.map((option) => ({
+              key: option.key,
+              value: option.key,
+              label: `${option.name} - ${option.translation}`,
+            }))}
+            handleOnOptionChange={(value) => handleCategoryChange(index, value)}
+          />
+        ))}
       </div>
       {hasError && (
         <p className="text-red-400 text-sm pt-2" role="alert">

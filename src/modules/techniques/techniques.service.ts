@@ -1,12 +1,5 @@
 import { BACKEND_URL } from '../core/constants';
-import {
-  Category,
-  Filters,
-  Grade,
-  Subcategory,
-  Technique,
-  TechniqueWithDescription,
-} from './interfaces';
+import { Category, Filters, Grade, Technique, TechniqueWithContent } from './interfaces';
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -30,14 +23,12 @@ export async function getTechniqueList({ filters }: { filters: Filters }): Promi
   return handleResponse<Technique[]>(res);
 }
 
-export async function getTechnique(
-  id: string | null
-): Promise<TechniqueWithDescription | undefined> {
+export async function getTechnique(id: string | null): Promise<TechniqueWithContent | undefined> {
   if (!id) return undefined;
 
   const res = await fetch(`${BACKEND_URL}/api/techniques/${id}`);
 
-  return handleResponse<TechniqueWithDescription>(res);
+  return handleResponse<TechniqueWithContent>(res);
 }
 
 export async function getGrades(): Promise<Grade[]> {
@@ -46,20 +37,23 @@ export async function getGrades(): Promise<Grade[]> {
   return handleResponse<Grade[]>(res);
 }
 
+// Categorías raíz del árbol (primer nivel del filtro).
 export async function getCategories(): Promise<Category[]> {
   const res = await fetch(`${BACKEND_URL}/api/techniques/categories`);
 
   return handleResponse<Category[]>(res);
 }
 
-export async function getSubcategories({ filters }: { filters: Filters }): Promise<Subcategory[]> {
-  const res = await fetch(`${BACKEND_URL}/api/techniques/subcategories`, {
+// Hijos directos de cualquier nodo del árbol — se reutiliza para cada nivel siguiente del
+// filtro, sin importar la profundidad. Array vacío = el nodo es una hoja.
+export async function getCategoryChildren(parentKey: string): Promise<Category[]> {
+  const res = await fetch(`${BACKEND_URL}/api/techniques/categories/children`, {
     method: 'POST',
-    body: JSON.stringify({ filters }),
+    body: JSON.stringify({ parentKey }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  return handleResponse<Subcategory[]>(res);
+  return handleResponse<Category[]>(res);
 }

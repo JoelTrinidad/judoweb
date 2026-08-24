@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Filters, Technique, TechniqueWithDescription } from '../interfaces';
+import { Filters, Technique, TechniqueWithContent } from '../interfaces';
 import { getTechnique, getTechniqueList } from '../techniques.service';
 import { useQuery } from '@tanstack/react-query';
 
 export default function useTechniques() {
   const [selectedTechniqueId, setSelectedTechniqueId] = useState<string | null>(null);
-  const [filters, setFilters] = useState<Filters>({ grade: '', category: '', subcategory: '' });
+  const [filters, setFilters] = useState<Filters>({ grade: '', categoryKey: '' });
 
   const {
     isLoading: techniquesLoading,
@@ -17,7 +17,7 @@ export default function useTechniques() {
   });
 
   const { isError: selectedTechniqueError, data: selectedTechnique = null } = useQuery<
-    TechniqueWithDescription | undefined
+    TechniqueWithContent | undefined
   >({
     queryKey: ['selectedTechnique', selectedTechniqueId],
     queryFn: async () => await getTechnique(selectedTechniqueId),

@@ -1,47 +1,101 @@
 import { cleanup, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { afterEach, it, expect, describe } from 'vitest';
 import TechniqueDescription from './technique-description';
+import { TechniqueWithContent } from '../interfaces';
 
-describe('Technique', () => {
+describe('TechniqueDescription', () => {
   afterEach(cleanup);
 
-  it('should render the elements', () => {
-    const technique = {
-      id: '1',
-      name: 'Seoi-nage',
-      description: [
+  const technique: TechniqueWithContent = {
+    id: '1',
+    name: 'Seoi-nage',
+    content: {
+      sections: [
         {
-          tag: 'p',
-          content: `Tori y uke se sostienen mutuamente en una posición natural derecha. Tori jala a
-                    Uke hacia adelante mientras da un ligero paso hacia atrás para desequilibrar a
-                    Uke. Tori coloca su pie derecho enfrente del pie derecho de uke y empieza a
-                    levantar a Uke con ambas manos.`,
+          key: 'kuzushi',
+          title: 'Kuzushi',
+          blocks: [
+            { type: 'paragraph', text: 'Párrafo 1 de kuzushi.' },
+            { type: 'paragraph', text: 'Párrafo 2 de kuzushi.' },
+            {
+              type: 'image',
+              src: '/uploads/techniques/foo.jpg',
+              alt: 'Kuzushi',
+              caption: 'Leyenda de kuzushi',
+            },
+            { type: 'paragraph', text: 'Párrafo 3 de kuzushi.' },
+          ],
         },
         {
-          tag: 'p',
-          content: `Tori dobla ambas rodillas, gira sobre su pie derecho mientras baja la cadera y
-                    coloca su pie izquierdo delante del pie izquierdo de Uke. Tori y Uke ahora estan
-                    en la misma dirección. Tori dobla su codo derecho y lo coloca en la axila
-                    derecha de Uke, después jala hacia abajo el brazo derecho de Uke y lo mantiene
-                    contra el cuerpo de Tori, mientras mantiene un contacto estrecho con el pecho de
-                    Uke.`,
+          key: 'tsukuri',
+          title: 'Tsukuri',
+          blocks: [
+            {
+              type: 'image_group',
+              images: [
+                { src: '/uploads/techniques/a.jpg', alt: 'A' },
+                { src: '/uploads/techniques/b.jpg', alt: 'B' },
+              ],
+              caption: 'Entrada de Tori',
+            },
+          ],
         },
         {
-          tag: 'p',
-          content: `Tori levanta a Uke con ambas manos e inclina su cuerpo hacia adelante, mientras
-            endereza ambas rodillas lanza a Uke sobre su hombro derecho. Con el brazo
-            derecho de Tori actuando como eje, el cuerpo de Uke girará y caerá.`,
+          key: 'kake',
+          title: 'Kake',
+          blocks: [
+            { type: 'paragraph', text: 'Ejecución final.' },
+            { type: 'video', url: 'https://youtube.com/watch?v=abc123', label: 'Demostración' },
+          ],
         },
       ],
-    };
+    },
+  };
 
+  it('renders the technique name and the three section titles', () => {
     render(<TechniqueDescription technique={technique} />);
-    const name = screen.getByText('Seoi-nage');
-    const firstParagraph = screen.getByText(/Tori y uke/);
-    const thirdParagraph = screen.getByText(/Tori levanta a Uke/);
 
-    expect(name).toBeInTheDocument();
-    expect(firstParagraph).toBeInTheDocument();
-    expect(thirdParagraph).toBeInTheDocument();
+    expect(screen.getByText('Seoi-nage')).toBeInTheDocument();
+    expect(screen.getByText('Kuzushi')).toBeInTheDocument();
+    expect(screen.getByText('Tsukuri')).toBeInTheDocument();
+    expect(screen.getByText('Kake')).toBeInTheDocument();
+  });
+
+  it('keeps only one section open at a time and preserves block order within it', async () => {
+    const user = userEvent.setup();
+    render(<TechniqueDescription technique={technique} />);
+
+    await user.click(screen.getByText('Kuzushi'));
+
+    const firstParagraph = screen.getByText(/Párrafo 1 de kuzushi/);
+    const image = screen.getByAltText('Kuzushi');
+    const thirdParagraph = screen.getByText(/Párrafo 3 de kuzushi/);
+
+    // El párrafo 1 y la imagen deben aparecer antes que el párrafo 3, en ese orden.
+    expect(
+      firstParagraph.compareDocumentPosition(image) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      image.compareDocumentPosition(thirdParagraph) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+
+    await user.click(screen.getByText('Tsukuri'));
+
+    expect(screen.queryByText(/Párrafo 1 de kuzushi/)).not.toBeInTheDocument();
+    expect(screen.getByAltText('A')).toBeInTheDocument();
+    expect(screen.getByAltText('B')).toBeInTheDocument();
+    expect(screen.getByText('Entrada de Tori')).toBeInTheDocument();
+  });
+
+  it('renders a video block as an embeddable iframe', async () => {
+    const user = userEvent.setup();
+    render(<TechniqueDescription technique={technique} />);
+
+    await user.click(screen.getByText('Kake'));
+
+    const iframe = screen.getByTitle('Demostración');
+    expect(iframe.tagName).toBe('IFRAME');
+    expect(iframe.getAttribute('src')).toContain('youtube.com/embed/abc123');
   });
 });
